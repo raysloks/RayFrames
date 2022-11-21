@@ -56,8 +56,8 @@ function RayCompactPartyFrame_RefreshMembers()
 
 		RayCompactUnitFrame_SetUnit(unitFrame, unitToken);
 		local setupOptions = {
-			width = 200,
-			height = 60
+			width = 140,
+			height = 50
 		}
 		local frameOptions = {
 			displayPowerBar = function (frame)

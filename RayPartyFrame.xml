@@ -7,7 +7,7 @@
 			<KeyValue key="bottomPadding" value="0" type="number"/>
 		</KeyValues>
 		<Anchors>
-			<Anchor point="TOP" relativeTo="RayCompactPlayerFrame" relativePoint="BOTTOM" x="0" y="-4"/>
+			<Anchor point="BOTTOM" relativeTo="UIParent" relativePoint="BOTTOM" x="0" y="200"/>
 		</Anchors>
 		<KeyValues>
 			<KeyValue key="spacing" value="10" type="number"/>
