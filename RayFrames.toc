@@ -1,0 +1,20 @@
+## Interface: 100000
+## Title: RayFrames
+## Notes: Unit frames that maybe suck
+## Dependencies: WeakAuras, UIScaleFix
+## SavedVariables: RayFramesDB
+## SavedVariablesPerCharacter: RayFramesDBChr
+## Version: 0.0.1
+
+RayPixelBorder.xml
+RayCompactUnitFrame.xml
+RayPlayerFrame.xml
+RayTargetFrame.xml
+RayCompactRaidGroup.xml
+RayCompactPartyFrame.xml
+RayPartyFrame.xml
+RayCompactRaidFrameReservationManager.lua
+RayCompactRaidFrameContainer.xml
+RayCastingBarFrame.xml
+RayFrames.xml
+RayPortraitTestFrame.xml

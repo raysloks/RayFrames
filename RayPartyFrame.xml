@@ -1,0 +1,21 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="RayPartyFrame.lua"/>
+	<Frame name="RayPartyFrame" mixin="RayPartyFrameMixin" inherits="VerticalLayoutFrame" frameStrata="LOW" parent="UIParent" toplevel="true">
+		<KeyValues>
+			<KeyValue key="defaultHideSelection" value="true" type="boolean"/>
+			<KeyValue key="bottomPadding" value="0" type="number"/>
+		</KeyValues>
+		<Anchors>
+			<Anchor point="TOP" relativeTo="RayCompactPlayerFrame" relativePoint="BOTTOM" x="0" y="-4"/>
+		</Anchors>
+		<KeyValues>
+			<KeyValue key="spacing" value="10" type="number"/>
+		</KeyValues>
+		<Scripts>
+			<OnLoad method="OnLoad" inherit="append"/>
+			<OnShow method="OnShow"/>
+			<OnEvent method="OnEvent"/>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,30 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Frame name="RayPortraitTestFrame" parent="UIParent">
+		<Size x="200" y="200"/>
+		<Anchors>
+			<Anchor point="BOTTOM" x="0" y="420"/>
+		</Anchors>
+        <Frames>
+            <ModelScene parentKey="scene" inherits="NonInteractableModelSceneMixinTemplate">
+                <Size x="200" y="200"/>
+                <Anchors>
+                    <Anchor point="CENTER"/>
+                </Anchors>
+            </ModelScene>
+        </Frames>
+		<Scripts>
+            <OnLoad>
+	            self:RegisterEvent("UNIT_PORTRAIT_UPDATE");
+	            self:RegisterEvent("PLAYER_TARGET_CHANGED");
+                self.actor = self.scene:AcquireActor();
+                -- self.camera = self.scene:CreateCameraFromScene(6);
+                -- self.scene:SetActiveCamera(self.camera);
+                self.scene:SetFromModelSceneID(9);
+                -- self.actor = self.scene:GetActorByTag("creature");
+            </OnLoad>
+			<OnEvent>
+			</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,244 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="RayCompactUnitFrame.lua"/>
+	<Button name="RayCompactAuraTemplate" inherits="SecureUnitButtonTemplate" virtual="true">
+		<Size x="17" y="17"/>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentIcon" parentKey="icon" setAllPoints="true"/>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="$parentCount" parentKey="count" inherits="NumberFontNormalSmall" justifyH="RIGHT">
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" x="5" y="0"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parentBorder" parentKey="border" inherits="RayPixelBorderTemplate"/>
+			<Cooldown name="$parentCooldown" parentKey="cooldown" hideCountdownNumbers="true" inherits="CooldownFrameTemplate" reverse="true" hidden="true">
+				<Anchors>
+					<Anchor point="CENTER" x="0" y="-1"/>
+				</Anchors>
+			</Cooldown>
+		</Frames>
+		<Scripts>
+			<OnEnter function="UnitFrame_OnEnter"/>
+			<OnLeave function="UnitFrame_OnLeave"/>
+		</Scripts>
+	</Button>
+	<Button name="RayCompactDebuffTemplate" inherits="RayCompactAuraTemplate" parentArray="debuffFrames" virtual="true">
+		<Scripts>
+			<OnLoad>
+				RayCompactAura_OnLoad(self);
+			</OnLoad>
+			<OnUpdate>
+				RayCompactAura_UpdateTooltip(self, AuraUtil.AuraUpdateChangedType.Debuff, self.tooltipOwned);
+			</OnUpdate>
+			<OnEnter>
+				RayCompactAura_UpdateTooltip(self, AuraUtil.AuraUpdateChangedType.Debuff, true);
+			</OnEnter>
+			<OnLeave>
+				RayCompactAura_UpdateTooltip(self, AuraUtil.AuraUpdateChangedType.Debuff, false);
+			</OnLeave>
+		</Scripts>
+	</Button>
+	<Button name="RayCompactBuffTemplate" inherits="RayCompactAuraTemplate" parentArray="buffFrames" virtual="true">
+		<Scripts>
+			<OnLoad>
+				RayCompactAura_OnLoad(self);
+			</OnLoad>
+			<OnUpdate>
+				RayCompactAura_UpdateTooltip(self, AuraUtil.AuraUpdateChangedType.Buff, self.tooltipOwned);
+			</OnUpdate>
+			<OnEnter>
+				RayCompactAura_UpdateTooltip(self, AuraUtil.AuraUpdateChangedType.Buff, true);
+			</OnEnter>
+			<OnLeave>
+				RayCompactAura_UpdateTooltip(self, AuraUtil.AuraUpdateChangedType.Buff, false);
+			</OnLeave>
+		</Scripts>
+	</Button>
+	<Frame name="RayCompactDispelDebuffTemplate" parentArray="dispelDebuffFrames" virtual="true">
+		<Layers>
+			<Layer level="ARTWORK" textureSubLevel="-1">
+				<Texture name="$parentGlow" parentKey="glow" atlas="OBJFX_Glow" hidden="true">
+					<!-- <Size x="512" y="256"/> -->
+					<Size x="128" y="128"/>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="$parentIcon" parentKey="icon">
+					<!-- <TexCoords left="0.125" right="0.875" top="0.125" bottom="0.875"/> -->
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Button name="RayCompactUnitFrameTemplate" frameStrata="LOW" inherits="SecureUnitButtonTemplate" virtual="true">
+		<Frames>
+			<StatusBar name="$parentHealthBarAnimatedLoss" parentKey="healthBarAnimatedLoss" mixin="AnimatedHealthLossMixin" hidden="true" useParentLevel="true" drawLayer="BACKGROUND">
+				<BarTexture atlas="UI-Frame-Bar-Fill-Red"/>
+				<Scripts>
+					<OnLoad method="OnLoad"/>
+				</Scripts>
+			</StatusBar>
+			<StatusBar name="$parentHealthBar" parentKey="healthBar" useParentLevel="true">
+				<Layers>
+					<Layer level="BACKGROUND" textureSubLevel="-1">
+						<Texture name="$parentBackground" parentKey="background" setAllPoints="true"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<StatusBar name="$parentPowerBar" parentKey="powerBar" useParentLevel="true">
+				<Layers>
+					<Layer level="BACKGROUND" textureSubLevel="-1">
+						<Texture name="$parentBackground" parentKey="background" setAllPoints="true"/>
+					</Layer>
+				</Layers>
+			</StatusBar>
+			<!-- <Frame name="$parentCastTargetHighlight" parentKey="castTargetHighlight" inherits="RayPixelBorderTemplate" useParentLevel="true" hidden="true">
+				<KeyValues>
+					<KeyValue key="width" value="2" type="number"/>
+					<KeyValue key="offset" value="-1" type="number"/>
+					<KeyValue key="r" value="0" type="number"/>
+					<KeyValue key="g" value="1" type="number"/>
+					<KeyValue key="b" value="1" type="number"/>
+				</KeyValues>
+			</Frame> -->
+			<Frame name="$parentAggroHighlight" parentKey="aggroHighlight" inherits="RayPixelBorderTemplate" useParentLevel="true" hidden="true">
+				<KeyValues>
+					<KeyValue key="width" value="2" type="number"/>
+					<KeyValue key="offset" value="-1" type="number"/>
+					<KeyValue key="r" value="1" type="number"/>
+					<KeyValue key="g" value="0" type="number"/>
+					<KeyValue key="b" value="0" type="number"/>
+				</KeyValues>
+			</Frame>
+			<Frame name="$parentSelectionHighlight" parentKey="selectionHighlight" inherits="RayPixelBorderTemplate" useParentLevel="true" hidden="true">
+				<KeyValues>
+					<KeyValue key="width" value="2" type="number"/>
+					<KeyValue key="offset" value="-1" type="number"/>
+					<KeyValue key="r" value="1" type="number"/>
+					<KeyValue key="g" value="1" type="number"/>
+					<KeyValue key="b" value="1" type="number"/>
+				</KeyValues>
+			</Frame>
+			<Button name="$parentBuff1" inherits="RayCompactBuffTemplate"/>
+			<Button name="$parentBuff2" inherits="RayCompactBuffTemplate"/>
+			<Button name="$parentBuff3" inherits="RayCompactBuffTemplate"/>
+			<Button name="$parentBuff4" inherits="RayCompactBuffTemplate"/>
+			<Button name="$parentBuff5" inherits="RayCompactBuffTemplate"/>
+			<Button name="$parentDebuff1" inherits="RayCompactDebuffTemplate"/>
+			<Button name="$parentDebuff2" inherits="RayCompactDebuffTemplate"/>
+			<Button name="$parentDebuff3" inherits="RayCompactDebuffTemplate"/>
+			<Button name="$parentDebuff4" inherits="RayCompactDebuffTemplate"/>
+			<Button name="$parentDebuff5" inherits="RayCompactDebuffTemplate"/>
+			<Frame name="$parentDispelDebuff1" parentKey="dispelDebuff1" inherits="RayCompactDispelDebuffTemplate"/>
+			<Frame name="$parentDispelDebuff2" parentKey="dispelDebuff2" inherits="RayCompactDispelDebuffTemplate"/>
+			<Frame name="$parentDispelDebuff3" parentKey="dispelDebuff3" inherits="RayCompactDispelDebuffTemplate"/>
+			<Button name="$parentCenterStatusIcon" parentKey="centerStatusIcon">
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture setAllPoints="true" parentKey="texture"/>
+					</Layer>
+					<Layer level="BORDER">
+						<Texture setAllPoints="true" parentKey="border"/>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						self:RegisterForClicks("LeftButtonDown", "RightButtonUp");
+					</OnLoad>
+					<OnClick>
+						self:GetParent():GetScript("OnClick")(self:GetParent(), button);
+					</OnClick>
+					<OnEnter>
+						if ( self.tooltip ) then
+							GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+							GameTooltip:SetText(self.tooltip, nil, nil, nil, nil, true);
+							GameTooltip:Show();
+						else
+							self:GetParent():GetScript("OnEnter")(self:GetParent(), motion);
+						end
+					</OnEnter>
+					<OnLeave>
+						if ( self.tooltip ) then
+							GameTooltip:Hide();
+						else
+							self:GetParent():GetScript("OnLeave")(self:GetParent(), motion);
+						end
+					</OnLeave>
+				</Scripts>
+			</Button>
+			<Frame name="$parentDropDown" inherits="UIDropDownMenuTemplate" parentKey="dropDown" hidden="true">
+				<Size x="10" y="10"/>
+				<Anchors>
+					<Anchor point="TOP" x="10" y="-60"/>
+				</Anchors>
+			</Frame>
+		</Frames>
+		<Layers>
+			<Layer level="BACKGROUND" textureSubLevel="-2">
+				<Texture name="$parentBackground" parentKey="background" setAllPoints="true" ignoreParentAlpha="true"/>
+			</Layer>
+			<Layer level="BORDER" textureSubLevel="5">
+				<Texture name="$parentMyHealPrediction" parentKey="myHealPrediction"/>
+				<Texture name="$parentOtherHealPrediction" parentKey="otherHealPrediction"/>
+				<Texture name="$parentTotalAbsorb" parentKey="totalAbsorb"/>
+			</Layer>
+			<Layer level="BORDER" textureSubLevel="6">
+				<Texture name="$parentTotalAbsorbOverlay" parentKey="totalAbsorbOverlay"/>
+			</Layer>
+			<Layer level="BORDER">
+				<Texture name="$parentHorizDivider" parentKey="horizDivider" horizTile="true" ignoreParentAlpha="true"/>
+				<Texture name="$parentHorizTopBorder" parentKey="horizTopBorder" horizTile="true" ignoreParentAlpha="true"/>
+				<Texture name="$parentHorizBottomBorder" parentKey="horizBottomBorder" horizTile="true" ignoreParentAlpha="true"/>
+				<Texture name="$parentVertLeftBorder" parentKey="vertLeftBorder" vertTile="true" ignoreParentAlpha="true"/>
+				<Texture name="$parentVertRightBorder" parentKey="vertRightBorder" vertTile="true" ignoreParentAlpha="true"/>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parentName" inherits="GameFontHighlightMed2" parentKey="name" wordwrap="true"/>
+				<FontString name="$parentStatusText" inherits="GameFontDisable" parentKey="statusText"/>
+				<Texture name="$parentRoleIcon" hidden="true" parentKey="roleIcon"/>
+			</Layer>
+			<Layer level="ARTWORK" textureSubLevel="1">
+				<Texture name="$parentMyHealAbsorb" parentKey="myHealAbsorb"/>
+				<Texture name="$parentMyHealAbsorbLeftShadow" parentKey="myHealAbsorbLeftShadow" file="Interface\RaidFrame\Absorb-Edge"/>
+				<Texture name="$parentMyHealAbsorbRightShadow" parentKey="myHealAbsorbRightShadow" file="Interface\RaidFrame\Absorb-Edge">
+					<TexCoords left="1" right="0" top="0" bottom="1"/>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK" textureSubLevel="2">
+				<Texture name="$parentOverAbsorbGlow" parentKey="overAbsorbGlow"/>
+				<Texture name="$parentOverHealAbsorbGlow" parentKey="overHealAbsorbGlow"/>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture name="$parentReadyCheckIcon" parentKey="readyCheckIcon" ignoreParentAlpha="true"/>
+				<Texture name="$parentMouseoverHighlight" parentKey="mouseoverHighlight" hidden="true" ignoreParentAlpha="true"/>
+				<Texture name="$parentCastTargetHighlight" parentKey="castTargetHighlight" hidden="true" ignoreParentAlpha="true"/>
+			</Layer>
+			<Layer level="BORDER">
+				<MaskTexture name="$parentGlowMask" parentKey="glowMask" atlas="SquareMask" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="1" y="-1"/>
+						<Anchor point="BOTTOMRIGHT" x="-1" y="1"/>
+					</Anchors>
+					<MaskedTextures>
+						<MaskedTexture childKey="dispelDebuff1.glow"/>
+						<MaskedTexture childKey="dispelDebuff2.glow"/>
+						<MaskedTexture childKey="dispelDebuff3.glow"/>
+					</MaskedTextures>
+				</MaskTexture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad function="RayCompactUnitFrame_OnLoad"/>
+			<OnEnter function="UnitFrame_OnEnter"/>
+			<OnLeave function="UnitFrame_OnLeave"/>
+		</Scripts>
+	</Button>
+</Ui>

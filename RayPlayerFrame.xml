@@ -1,0 +1,28 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Button name="RayCompactPlayerFrame" frameStrata="LOW" toplevel="true" movable="true" inherits="RayCompactUnitFrameTemplate" parent="UIParent">
+		<Anchors>
+			<Anchor point="BOTTOMRIGHT" x="-300" y="320" relativePoint="BOTTOM"/>
+		</Anchors>
+		<Scripts>
+			<OnUpdate>
+				-- TODO fix better way of initializing frame
+				if ( self.initialized == nil ) then
+					local unitFrame = _G["RayCompactPlayerFrame"];
+					local setupOptions = {
+						width = 240,
+						height = 50,
+						maxBuffs = 0,
+						maxDebuffs = 0
+					}
+					local frameOptions = {
+						displayPowerBar = true
+					}
+					RayCompactUnitFrame_SetUpFrame(unitFrame, DefaultRayCompactUnitFrameSetup, setupOptions, frameOptions);
+					RayCompactUnitFrame_SetUnit(unitFrame, "player");
+					self.initialized = true;
+				end
+			</OnUpdate>
+		</Scripts>
+	</Button>
+</Ui>

@@ -1,0 +1,29 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="RayPixelBorder.lua"/>
+	<Frame name="RayPixelBorderTemplate" mixin="RayPixelBorderMixin" virtual="true">
+		<KeyValues>
+			<KeyValue key="width" value="1" type="number"/>
+			<KeyValue key="offset" value="-1" type="number"/>
+			<KeyValue key="r" value="0" type="number"/>
+			<KeyValue key="g" value="0" type="number"/>
+			<KeyValue key="b" value="0" type="number"/>
+			<KeyValue key="a" value="1" type="number"/>
+		</KeyValues>
+		<Anchors>
+			<Anchor point="TOPLEFT"/>
+			<Anchor point="BOTTOMRIGHT"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BORDER">
+				<Texture name="$parentHorizTopBorder" parentKey="horizTopBorder" horizTile="true"/>
+				<Texture name="$parentHorizBottomBorder" parentKey="horizBottomBorder" horizTile="true"/>
+				<Texture name="$parentVertLeftBorder" parentKey="vertLeftBorder" vertTile="true"/>
+				<Texture name="$parentVertRightBorder" parentKey="vertRightBorder" vertTile="true"/>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad method="OnLoad" inherit="append"/>
+		</Scripts>
+	</Frame>
+</Ui>
