@@ -1,7 +1,7 @@
 ## Interface: 100000
 ## Title: RayFrames
 ## Notes: Unit frames that maybe suck
-## Dependencies: WeakAuras, UIScaleFix
+## Dependencies: WeakAuras
 ## SavedVariables: RayFramesDB
 ## SavedVariablesPerCharacter: RayFramesDBChr
 ## Version: 0.0.1

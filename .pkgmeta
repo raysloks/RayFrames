@@ -1,0 +1,6 @@
+package-as: RayFrames
+
+ignore:
+  - .github
+  - .gitignore
+  - README.md
